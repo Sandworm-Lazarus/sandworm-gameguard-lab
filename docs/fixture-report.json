@@ -1,0 +1,126 @@
+{
+  "engineVersion": "0.1.0",
+  "sourceSha256": "30254a93b351fdb6d57905a9f70d0dc435d779ae3644ff088d349ce87da6199c",
+  "reports": [
+    {
+      "name": "replay",
+      "fixtureSha256": "b0d1c0329a682664d2c0b6e9c7f3cb3647cf6fb23c701f60e8c7fab2b672761e",
+      "guarded": {
+        "applied": 1,
+        "denied": 0,
+        "replayed": 1
+      },
+      "naive": {
+        "applied": 2,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    },
+    {
+      "name": "ownership",
+      "fixtureSha256": "9cd35f429038986c5f78975b2b213f43f4ed350d0dcb0301ed278bc646e363a1",
+      "guarded": {
+        "applied": 0,
+        "denied": 1,
+        "replayed": 0
+      },
+      "naive": {
+        "applied": 1,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    },
+    {
+      "name": "funds",
+      "fixtureSha256": "ba4e7f9430b8fb151630eb7ff3918664351e1dbbbc5c9b8e0203b4ddcc12e36b",
+      "guarded": {
+        "applied": 0,
+        "denied": 1,
+        "replayed": 0
+      },
+      "naive": {
+        "applied": 1,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    },
+    {
+      "name": "stock",
+      "fixtureSha256": "1b2cb539f3e3a6193b30672588f3e92bc7e16b165190be8ef1a604b64a36fb92",
+      "guarded": {
+        "applied": 1,
+        "denied": 1,
+        "replayed": 0
+      },
+      "naive": {
+        "applied": 2,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    },
+    {
+      "name": "collision",
+      "fixtureSha256": "ff51fdc6a8819ee125ea3598b6755ccb9434c72e8cfdc123a17f79b4d9c8d8a2",
+      "guarded": {
+        "applied": 1,
+        "denied": 1,
+        "replayed": 0
+      },
+      "naive": {
+        "applied": 2,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    },
+    {
+      "name": "use",
+      "fixtureSha256": "d9916211b280af18498c5d6b86b394891ea43953486e99c56e07d67764737e96",
+      "guarded": {
+        "applied": 0,
+        "denied": 1,
+        "replayed": 0
+      },
+      "naive": {
+        "applied": 1,
+        "denied": 0,
+        "replayed": 0
+      },
+      "guardedInvariants": {
+        "currencyConserved": true,
+        "nonnegativeBalances": true,
+        "nonnegativeStock": true,
+        "nonnegativeInventory": true
+      }
+    }
+  ]
+}

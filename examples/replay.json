@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "accounts": [
+    {
+      "id": "alice",
+      "owner": "player-a",
+      "balance": 100,
+      "inventory": {
+        "potion": 1
+      }
+    },
+    {
+      "id": "bob",
+      "owner": "player-b",
+      "balance": 25,
+      "inventory": {
+        "potion": 0
+      }
+    }
+  ],
+  "shop": [
+    {
+      "id": "potion",
+      "price": 10,
+      "stock": 2
+    }
+  ],
+  "treasury": 0,
+  "events": [
+    {
+      "type": "transfer",
+      "key": "tx-01",
+      "actor": "player-a",
+      "from": "alice",
+      "to": "bob",
+      "amount": 30
+    },
+    {
+      "type": "transfer",
+      "key": "tx-01",
+      "actor": "player-a",
+      "from": "alice",
+      "to": "bob",
+      "amount": 30
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "project": "sandworm-gameguard-lab",
+  "checked_at": "2026-11-11T11:03:11.551Z",
+  "runtime": "v24.22.1",
+  "result": "pass",
+  "tests": 26,
+  "passed": 26,
+  "failed": 0,
+  "source_manifest_sha256": "14423f63fd1db21453b10dc1ca9c7bf0067a8fbd7161c48f74cefb89c71977d3",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "sha256": "ba84f9fafe1767a1eff2f7160d4bb64d90fc8a26c37c44c3980d6d289309135c"
+    },
+    {
+      "path": "dist/engine-provenance.js",
+      "sha256": "55669fcd89a27b2c581af5145b559a0331e700346c33d7e79dac44efa043f9b3"
+    },
+    {
+      "path": "dist/fonts/Anuphan-OFL.txt",
+      "sha256": "cbc57ac0dddda1b70f246a16358fc3c2a32628a23a6d10ef64f746141d3fb159"
+    },
+    {
+      "path": "dist/fonts/Chakra-Petch-OFL.txt",
+      "sha256": "13831d02389d917d22fcfa6c79f98f8acbf61d230add0e73a4d4dc5f3bfb9e56"
+    },
+    {
+      "path": "dist/fonts/JetBrains-Mono-OFL.txt",
+      "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+    },
+    {
+      "path": "dist/gameguard.js",
+      "sha256": "30254a93b351fdb6d57905a9f70d0dc435d779ae3644ff088d349ce87da6199c"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "eccf6bfa9c39ebd9ff99717f1e0b4e32dd8a02c74463206f8c4c92fc9c992d19"
+    },
+    {
+      "path": "dist/mark.svg",
+      "sha256": "ee731288307e122e75090d2b39fd735667292e8b069b430b8d760a2a3c3cd5ac"
+    },
+    {
+      "path": "dist/network.svg",
+      "sha256": "31596a6bbc4dea95c4abc8edd7b98bd9f00bad7ef797681de1b0574cb80f0e38"
+    },
+    {
+      "path": "dist/styles.css",
+      "sha256": "9c1405a7272fc90d6b69c7fa921725a0fdef7419a7b642055a1d88635ef1583e"
+    },
+    {
+      "path": "tests/gameguard.test.cjs",
+      "sha256": "8123fb6333af3656c0c5f165489d8342c20b375755932878fdf62a38e0799f5b"
+    },
+    {
+      "path": "examples/replay.json",
+      "sha256": "f411ac2d98e03f299cb799ba364b3eabed45c963da669590b8c1e40ba949feed"
+    },
+    {
+      "path": "scripts/run-fixtures.cjs",
+      "sha256": "f398548103adb6d2612b9f8ad635f067dc3ded054f17ab40b9086a2ac2b7c273"
+    },
+    {
+      "path": "scripts/stamp.cjs",
+      "sha256": "68d4fd50e17c35f7a4750c143b04bab5766a5f6683b4a18ef16f6f8eb49e0c79"
+    },
+    {
+      "path": "scripts/validate.cjs",
+      "sha256": "621742105969e8a8fdba38dc87436a75e5dd5b134efd27b6094f93a7922270e2"
+    },
+    {
+      "path": "scripts/verify.cjs",
+      "sha256": "69630303dd2a7cb483d5ab02cfb61f9b9cd20981c45882dbf07a0ce0e30f5c6c"
+    }
+  ],
+  "note": "Local execution only. SHA-256 detects changed bytes, not authenticity or a security certification. Hosted CI status is separate."
+}
