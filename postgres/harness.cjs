@@ -24,9 +24,10 @@ function config(env = process.env) {
   if (params.some(key => key !== 'sslmode') || params.length > 1) fail('INVALID_TEST_DATABASE');
   const sslmode = url.searchParams.get('sslmode') || 'prefer';
   if (!['disable', 'prefer', 'require', 'verify-ca', 'verify-full'].includes(sslmode)) fail('INVALID_TEST_DATABASE');
+  const host = url.hostname.startsWith('[') ? url.hostname.slice(1,-1) : url.hostname;
   return { database, env: {
     PATH: process.env.PATH || '', ...(process.env.SystemRoot ? {SystemRoot:process.env.SystemRoot} : {}),
-    PGHOST: url.hostname, PGPORT: url.port || '5432', PGUSER: user, PGPASSWORD: password,
+    PGHOST: host, PGPORT: url.port || '5432', PGUSER: user, PGPASSWORD: password,
     PGDATABASE: database, PGSSLMODE: sslmode, PGCONNECT_TIMEOUT: '5', PGAPPNAME: 'sandworm-gameguard-test'
   }};
 }

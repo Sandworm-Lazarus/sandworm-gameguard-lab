@@ -34,6 +34,11 @@ test('credentials remain in child environment and inherited PG overrides are exc
   assert.equal(settings.env.PGOPTIONS,undefined);
   assert.equal(settings.env.PGPASSWORD,'');
 });
+test('IPv6 URL brackets are removed for libpq PGHOST without changing IPv4 hosts',()=>{
+  const ipv6=config({...env,GAMEGUARD_TEST_DATABASE_URL:'postgresql://fixture@[::1]/gameguard_test_unit?sslmode=disable'});
+  assert.equal(ipv6.env.PGHOST,'::1');
+  assert.equal(config(env).env.PGHOST,'127.0.0.1');
+});
 test('schema cleanup identifiers are restricted to generated harness names',()=>{
   assert.equal(schemaName('gameguard_harness_0123456789abcdef'),'gameguard_harness_0123456789abcdef');
   for (const name of ['public','gameguard_harness_abc','gameguard_harness_0123456789abcdef;DROP SCHEMA public']) {
