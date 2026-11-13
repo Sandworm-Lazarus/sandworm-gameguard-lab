@@ -92,5 +92,5 @@ BEGIN
   result_value := jsonb_build_object('status','applied','reason','CHECKS_PASSED','cost',cost,'quantity',p_quantity);
   INSERT INTO successful_requests VALUES (p_principal, p_key, command_value, result_value);
   RETURN result_value;
-END
+END;
 $purchase$;

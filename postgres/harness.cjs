@@ -54,7 +54,7 @@ function createHarness(env = process.env, selectedSchema) {
   function execute(sql, parse = false) {
     if (typeof sql !== 'string' || Buffer.byteLength(sql) > 32768) fail('QUERY_LIMIT');
     const prelude = "SET statement_timeout='8s'; SET lock_timeout='5s'; SET standard_conforming_strings=on;\n" +
-      "DO $guard$ BEGIN IF current_database() <> '" + settings.database + "' THEN RAISE EXCEPTION 'WRONG_TEST_DATABASE'; END IF; END $guard$;\n" +
+      "DO $guard$ BEGIN IF current_database() <> '" + settings.database + "' THEN RAISE EXCEPTION 'WRONG_TEST_DATABASE'; END IF; END; $guard$;\n" +
       'SET search_path TO ' + schema + ', pg_catalog;\n';
     return new Promise((resolve,reject) => {
       // Connection settings are environment variables, never argv or error text.

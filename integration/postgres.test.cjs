@@ -93,11 +93,11 @@ test('real PostgreSQL transaction contract',{timeout:120000},async t=>{
   });
 
   await t.test('insufficient funds does not mutate state or reserve the failed key',async()=>{
-    await harness.seed({balance:1,stock:2});
+    await harness.seed({balance:10,stock:2});
     const before=await harness.snapshot();
-    assert.equal((await harness.purchase(principal,buy('failed-key'))).reason,'INSUFFICIENT_FUNDS');
+    assert.equal((await harness.purchase(principal,buy('failed-key',{quantity:2}))).reason,'INSUFFICIENT_FUNDS');
     assert.deepEqual(await harness.snapshot(),before);
-    assert.equal((await harness.purchase({id:'player-b'},buy('failed-key',{account:'bob'}))).status,'applied');
+    assert.equal((await harness.purchase(principal,buy('failed-key'))).status,'applied');
   });
 
   await t.test('SQL failure after debit rolls back stock, money, inventory and receipt on disconnect',async()=>{
