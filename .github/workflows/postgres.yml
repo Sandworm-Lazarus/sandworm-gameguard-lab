@@ -1,0 +1,45 @@
+name: PostgreSQL transaction integration
+
+on:
+  push:
+    branches: [main, codex/postgres-transactions-20261113]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: gameguard_test
+          POSTGRES_DB: gameguard_test_ci
+          # Disposable isolated CI service only. There is no production credential here.
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U gameguard_test -d gameguard_test_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      GAMEGUARD_ALLOW_DISPOSABLE_DATABASE: '1'
+      GAMEGUARD_TEST_DATABASE_URL: postgresql://gameguard_test@127.0.0.1:5432/gameguard_test_ci?sslmode=disable
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check cloud runner tools
+        run: |
+          node --version
+          psql --version
+      - name: Validate browser and harness unit tests
+        run: npm run check
+      - name: Run real PostgreSQL concurrency and restart tests
+        run: npm run test:postgres

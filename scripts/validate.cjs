@@ -20,7 +20,7 @@ function walk(dir) {
     else if (entry.isFile()) files.push({ path: name, sha256: crypto.createHash('sha256').update(fs.readFileSync(path.join(root, name))).digest('hex') });
   }
 }
-for (const dir of ['dist', 'tests', 'examples', 'scripts']) walk(dir);
+for (const dir of ['dist', 'tests', 'examples', 'scripts', 'postgres', 'integration']) walk(dir);
 const digest = crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex');
 const record = { schema_version: 1, project: JSON.parse(fs.readFileSync(path.join(root, 'package.json'))).name, checked_at: new Date().toISOString(), runtime: process.version, result: 'pass', tests: Number((run.stdout.match(/^# tests (\d+)$/m)||[])[1]), passed: Number((run.stdout.match(/^# pass (\d+)$/m)||[])[1]), failed: 0, source_manifest_sha256: digest, files, note: 'Local execution only. SHA-256 detects changed bytes, not authenticity or a security certification. Hosted CI status is separate.' };
 fs.mkdirSync(path.join(root, 'reports'), { recursive: true });

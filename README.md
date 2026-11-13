@@ -6,7 +6,7 @@ A browser-local game-economy replay lab. Compare a deliberately unchecked baseli
 
 [คู่มือภาษาไทย](README.th.md) · [Scenario schema](docs/SCHEMA.md) · [Threat model](docs/THREAT_MODEL.md)
 
-**This is a synthetic, sequential, in-memory model. It is not a deployed game server, a database transaction implementation, or evidence that a real server resists concurrent requests.** No external target is contacted. No downloaded or pasted code is executed.
+**The browser lab is a synthetic, sequential, in-memory model. It is not a deployed game server or evidence that a real server resists concurrent requests.** No external target is contacted. No downloaded or pasted code is executed.
 
 ## Start
 
@@ -84,3 +84,17 @@ Application code and original artwork: MIT. Bundled typefaces: SIL OFL 1.1, with
 ## Sandworm tools
 
 [Skill Doctor](https://github.com/Sandworm-Lazarus/sandworm-skill-doctor) · [Thai Eval Studio](https://github.com/Sandworm-Lazarus/sandworm-thai-eval) · [AI Run Ledger](https://github.com/Sandworm-Lazarus/sandworm-ai-run-ledger) · [Agent Gate](https://github.com/Sandworm-Lazarus/sandworm-agent-gate) · [Privacy Workbench](https://github.com/Sandworm-Lazarus/sandworm-privacy-workbench)
+
+## Real PostgreSQL transaction reference
+
+A separate [PostgreSQL harness](docs/POSTGRES_HARNESS.md) adds real row locking,
+durable purchase idempotency, atomic inventory/currency changes, concurrent buyers,
+application-process restart retries and rollback checks. It uses Node.js + the
+installed psql client, with no npm dependencies. It is an integration-test
+reference, not a production server or a change to the browser's offline behavior.
+
+The **PostgreSQL transaction integration** Actions workflow provisions a disposable
+database and runs the tests in the cloud. Manual runs require explicit disposable
+database opt-in and a gameguard_test_* database. Run npm run test:postgres only
+after configuring that isolated environment. Hosted results are pending execution;
+the committed browser validation report does not certify these database tests.
