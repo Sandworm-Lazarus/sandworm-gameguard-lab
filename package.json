@@ -12,6 +12,7 @@
     "serve": "python3 -m http.server 8080 --bind 127.0.0.1 --directory dist",
     "fixtures": "node scripts/run-fixtures.cjs",
     "stamp": "node scripts/stamp.cjs",
-    "check": "node scripts/validate.cjs"
+    "check": "node scripts/validate.cjs",
+    "test:postgres": "node --test integration/postgres.test.cjs"
   }
 }

@@ -4,7 +4,7 @@
 
 ห้องทดลองเศรษฐกิจเกมในเบราว์เซอร์ เปรียบเทียบคำสั่งโอน ซื้อ และใช้ไอเทม ระหว่าง baseline ที่จงใจขาดการตรวจ กับ guarded model ที่ตรวจสิทธิ์ ยอดเงิน สต็อก คำสั่งซ้ำ และการเปลี่ยนสถานะแบบ atomic
 
-**เป็นแบบจำลองข้อมูลสมมติในหน่วยความจำแบบเรียงลำดับ ไม่ใช่เซิร์ฟเวอร์เกมหรือระบบธุรกรรมฐานข้อมูลจริง และไม่พิสูจน์การป้องกัน race condition** ไม่มีการเชื่อมต่อหรือสแกนเป้าหมายภายนอก
+**ส่วนเบราว์เซอร์เป็นแบบจำลองข้อมูลสมมติในหน่วยความจำแบบเรียงลำดับ ไม่ใช่เซิร์ฟเวอร์เกม และไม่พิสูจน์การป้องกัน race condition** ไม่มีการเชื่อมต่อหรือสแกนเป้าหมายภายนอก
 
 ## เปิดใช้งาน
 
@@ -41,7 +41,7 @@ python3 -m http.server 8080 --bind 127.0.0.1 --directory dist
 - treasury รับเงินจากการซื้อ เพื่อให้ตรวจยอดเงินรวมได้
 - key ของคำสั่งที่สำเร็จจำ payload แบบ normalized; คำสั่งที่ล้มเหลวไม่จอง key
 - actor เป็นข้อมูลสมมติที่ผู้ใช้กรอก ในเซิร์ฟเวอร์จริงต้องได้จากระบบยืนยันตัวตน
-- ไม่มีฐานข้อมูล การรันพร้อมกัน crash recovery หรือ server enforcement
+- ส่วนเบราว์เซอร์ไม่มีฐานข้อมูล การรันพร้อมกัน crash recovery หรือ server enforcement
 - parser ใช้ JSON ของ runtime; ถ้าคีย์ JSON ซ้ำจะใช้ค่าตัวท้าย แต่ entity ID ที่ซ้ำถูกปฏิเสธ
 
 ## ทดสอบและตรวจซ้ำ
@@ -62,3 +62,15 @@ npm run fixtures
 ## Sandworm tools
 
 [Skill Doctor](https://github.com/Sandworm-Lazarus/sandworm-skill-doctor) · [Thai Eval Studio](https://github.com/Sandworm-Lazarus/sandworm-thai-eval) · [AI Run Ledger](https://github.com/Sandworm-Lazarus/sandworm-ai-run-ledger) · [Agent Gate](https://github.com/Sandworm-Lazarus/sandworm-agent-gate) · [Privacy Workbench](https://github.com/Sandworm-Lazarus/sandworm-privacy-workbench)
+
+## ห้องทดลอง PostgreSQL จริง
+
+เพิ่ม [transaction harness](docs/POSTGRES_HARNESS.md) แยกจากหน้าเว็บ ใช้ Node.js
+กับ psql โดยไม่มี npm dependency ทดลอง row locking, durable idempotency,
+การซื้อพร้อมกัน 20 บัญชี, retry หลัง Node process จบ และ rollback เมื่อ SQL ล้มเหลว
+principal รับจากบริบท server ที่เชื่อถือได้แยกจากคำสั่งซื้อ ไม่รับ actor จาก client
+
+เปิด Actions → **PostgreSQL transaction integration** เพื่อสร้าง PostgreSQL
+ชั่วคราวและรันทดสอบใน cloud ฐานข้อมูลต้องเป็นชื่อ gameguard_test_* และต้อง opt in
+อย่างชัดเจน ยังต้องรัน hosted tests เพื่อยืนยันผล การมีโค้ดเทสไม่เท่ากับผ่านแล้ว
+รายงาน browser เดิมไม่ใช่หลักฐานการทดสอบ PostgreSQL
